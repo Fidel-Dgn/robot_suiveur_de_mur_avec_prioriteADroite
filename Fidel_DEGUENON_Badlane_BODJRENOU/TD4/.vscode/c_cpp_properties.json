@@ -1,0 +1,28 @@
+{
+    "env": {
+        "intelliSenseCachePath": "/tmp/vscode_intellisense"
+    },
+    "configurations": [
+        {
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "/tmp/vscode_symboldb"
+            },
+            "recursiveIncludes": {
+                "reduce": "never"
+            },
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/",
+                "${workspaceFolder}/../lib_mrpiz*/include/mrpiz/",
+                "${workspaceFolder}/terminal/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,111 @@
+#VRML_SIM R2023b utf8
+#
+# Author: Matthias Brun (matthias.brun@eseo.fr)
+#
+
+EXTERNPROTO "../protos/cyberbotics/TexturedBackground.proto"
+EXTERNPROTO "../protos/cyberbotics/TexturedBackgroundLight.proto"
+EXTERNPROTO "../protos/cyberbotics/Floor.proto"
+
+EXTERNPROTO "../protos/mrpiz/MRPiZ.proto"
+EXTERNPROTO "../protos/maze/MazeBuilder.proto"
+
+WorldInfo {
+  info [
+    "Useful for playing with the MRPiZ robots in a maze"
+    ""
+    "MRPiZ yellow (inside) listen on port 12341"
+    "MRPiZ red (at the exit) listen on port 12302"
+    "MRPiZ blue (outside) listen on port 12304"
+  ]
+  title "MRPiZ maze game world"
+  
+  contactProperties [
+    # Need by MRPiZ.proto (for the idle wheel)
+    ContactProperties {
+      material1 "idle wheel material"
+      coulombFriction [ 0.001 ]
+      bumpSound "../sounds/cyberbotics/bump.wav"
+      rollSound ""
+      slideSound ""
+    }
+    # Local wav sounds
+    ContactProperties {
+      material1 "default"
+      material2 "default"
+      bumpSound "../sounds/cyberbotics/bump.wav"
+      rollSound "../sounds/cyberbotics/roll.wav"
+      slideSound "../sounds/cyberbotics/slide.wav"
+    }
+  ]
+}
+
+Viewpoint {
+  position -3.9 0 4
+  orientation 0 1 0 0.65
+  # position 0 0 2
+  # orientation 0 1 0 1.57
+}  
+TexturedBackground {}
+TexturedBackgroundLight {}
+
+Floor {
+  size 100 100
+  tileSize 0.1 0.1
+}
+
+MazeBuilder {
+  translation          0.2 -2 0
+  
+  size                 20 15
+  mazeCustomLog        FALSE
+  
+  sideSize             0.1
+  thicknessFactor      3
+  heightSize           0.1
+  wood                 FALSE
+  color                0 0.4 0.15
+  transparency         0
+  roughness            1
+  metalness            0.5
+  
+  entrance             TRUE
+  exit                 TRUE
+  
+  isolatedWalls        TRUE
+  
+  robotInside          MRPiZ {
+                         name "MRPiZ yellow (inside)"
+                         controllerArgs ["12341"]
+                         bodyColor 0.8 0.8 0
+                         bodyRoughness 1
+                         bodyMetalness 0
+                       }
+                       
+  robotEntrance        MRPiZ {
+                         name "MRPiZ green (at the entrance)"
+                         controllerArgs ["12301"]
+                         bodyColor 0 0.7 0
+                         bodyRoughness 1
+                         bodyMetalness 0
+                       }
+                       
+  robotExit            MRPiZ {
+                         name "MRPiZ red (at the exit)"
+                         controllerArgs ["12302"]
+                         bodyColor 0.7 0 0
+                         bodyRoughness 1
+                         bodyMetalness 0
+                         rotation 0 0 1 3.1416
+                       } 
+}
+
+MRPiZ {
+  translation 0 0 0
+  name "MRPiZ blue (outside)"
+  controllerArgs ["12304"]
+  bodyColor 0 0 0.7
+  bodyRoughness 1
+  bodyMetalness 0
+}
+

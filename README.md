@@ -1,0 +1,2 @@
+# robot_suiveur_de_mur_avec_prioriteADroite
+La mission Ultrason – Robot Solver consiste à permettre au robot de se déplacer dans un environnement inconnu, en utilisant un capteur ultrason pour détecter la présence ou la perte d’un mur, et un algorithme de résolution (solver) pour décider de la direction à prendre lorsque le mur disparaît.  Le robot combine :  détection ultrason (présence ou absence du mur),  suivi du mur (algorithme de follower),  prise de décision autonome (solver),  mouvements pilotés (pilot_start_move).
